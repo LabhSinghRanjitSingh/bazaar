@@ -1,0 +1,13 @@
+{% extends "wholesale/base.html" %}
+
+{% block body %}
+
+    <!-- slider top baar ----->
+    {% include 'wholesale/slider.html' with slides=slides %}
+
+    <!--- product scroller --->
+    {% include 'wholesale/productscroller.html' %}
+
+    {% include "wholesale/productpopup.html" %}
+
+{% endblock %}

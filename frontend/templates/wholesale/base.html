@@ -1,0 +1,15 @@
+{% extends "wholesale/init.html" %}
+
+{% block hbody %}
+  {% include  'wholesale/header.html' %}
+  <!-- cart template ---------->
+  {% include 'wholesale/cart.html' %}
+
+
+  {% block body %}
+  {% endblock %}
+
+
+  <!-- footer with top button --->
+  {% include 'wholesale/footer.html' %}
+{% endblock %}
