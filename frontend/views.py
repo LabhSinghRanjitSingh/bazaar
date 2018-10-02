@@ -33,6 +33,8 @@ class PageView:
         data = {"books":books,"brands":brands}
         return render(request, 'wholesale/books.html',data)
 
+    def contactus(self,request):
+        return render(request,'wholesale/contactus.html')
 
 class UserViewSet(viewsets.ModelViewSet):
     """
