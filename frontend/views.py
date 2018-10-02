@@ -9,12 +9,17 @@ from django.db.models import Count
 
 class PageView:
     def __init__(self):
+        pass
+
+    def init(self):
         self.data = {}
         brands = Brand.objects.all()
         self.data["brands"] = Brand.objects.all()
         self.data["clothtypes"] = ClothType.objects.all()
+        self.data["piecesCountList"] = ["1-5","6-10","11-15","16-20","More than 20"]
 
     def home(self, request):
+        self.init()
         slides = Slider.objects.all()
         tags = Scroller.objects.values('tag').annotate(dcount=Count('tag'))
         tagsData = {}
@@ -28,11 +33,13 @@ class PageView:
         return render(request, 'wholesale/index.html',self.data)
 
     def book(self,request,id):
+        self.init()
         book = Book.objects.get(pk=int(id))
         self.data["book"] =book
         return render(request, 'wholesale/book.html',self.data)
 
     def books(self,request):
+        self.init()
         kargs = {}
         if request.GET:
             if request.GET.get("brands"):
@@ -50,6 +57,7 @@ class PageView:
         return render(request, 'wholesale/books.html',self.data)
 
     def contactus(self,request):
+        self.init()
         return render(request,'wholesale/contactus.html',self.data)
 
 class UserViewSet(viewsets.ModelViewSet):

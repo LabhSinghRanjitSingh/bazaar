@@ -6,7 +6,7 @@
       <nav class="limiter-menu-desktop p-l-45">
 
         <!-- Logo desktop -->
-        <a href="#" class="logo">
+        <a href="/" class="logo">
           <img src="{%static 'images/icons/logo-02.png' %}" alt="IMG-LOGO">
         </a>
 
@@ -61,7 +61,7 @@
   <div class="wrap-header-mobile">
     <!-- Logo moblie -->
     <div class="logo-mobile">
-      <a href="index.html"><img src="{% static 'images/icons/logo-01.png' %}" alt="IMG-LOGO"></a>
+      <a href="/"><img src="{% static 'images/icons/logo-01.png' %}" alt="IMG-LOGO"></a>
     </div>
 
     <!-- Icon header -->
@@ -99,9 +99,9 @@
           Brands
         </a>
         <ul class="sub-menu-m">
-          <li><a href="index.html"> Brand 1</a></li>
-          <li><a href="home-02.html">Brannd 2</a></li>
-          <li><a href="home-03.html">Brand 3</a></li>
+          {% for brand in brands %}
+             <li><a href="/books/?brands={{brand.name}}">{{brand.name}}</a></li>
+          {% endfor %}
         </ul>
         <span class="arrow-main-menu-m">
           <i class="fa fa-angle-right" aria-hidden="true"></i>

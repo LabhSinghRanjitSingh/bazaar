@@ -50,8 +50,9 @@
 	<script src="{% static  'vendor/bootstrap/js/popper.js' %}"></script>
 	<script src="{% static  'vendor/bootstrap/js/bootstrap.min.js' %}"></script>
 <!--===============================================================================================-->
-	<script src="{% static  'vendor/select2/select2.min.js' %}"></script>
+  <script src="{% static  'vendor/select2/select2.min.js' %}"></script>
 
+  <script src="//cdn.jsdelivr.net/npm/pouchdb@7.0.0/dist/pouchdb.min.js"></script>
 
 <!-- TODO -->
 <script>
@@ -61,7 +62,7 @@
 				dropdownParent: $(this).next('.dropDownSelect2')
 			});
 		})
-	</script>
+</script>
 
 
 <!--===============================================================================================-->
@@ -95,30 +96,58 @@
 	<script src="{% static  'vendor/sweetalert/sweetalert.min.js' %}"></script>
 	<script>
 		function haiku(){
+
 			$('.js-addwish-b2').on('click', function(e){
 				e.preventDefault();
 			});
 
+
 			$('.js-addwish-b2').each(function(){
 				var nameProduct = $(this).parent().parent().find('.js-name-b2').html();
 				$(this).on('click', function(){
-					swal(nameProduct, "is added to wishlist !", "success");
 
-					$(this).addClass('js-addedwish-b2');
-					$(this).off('click');
+					if($(this).data("incart")){
+
+					 id = $(this).data("id");
+					 removeFromCart(id);
+
+					 swal(nameProduct, "is removed from cart !", "success");
+					 $(this).removeClass('js-addedwish-b2');
+					 $(this).addClass('js-addedwish-b1');
+					 $(this).data("incart",false);
+
+
+					}else{
+
+						id = $(this).data("id");
+ 					  name =  $(this).data("name");
+ 					  pieces = $(this).data("pieces");
+						image = $(this).data("image");
+						addToCart(id,name,pieces,image);
+
+						swal(nameProduct, "is added to cart !", "success");
+						$(this).addClass('js-addedwish-b2');
+						$(this).data("incart",true);
+
+					}
+
+
+
+					//$(this).off('click');
+
 				});
 			});
 
-			$('.js-addwish-detail').each(function(){
-				var nameProduct = $(this).parent().parent().parent().find('.js-name-detail').html();
-
-				$(this).on('click', function(){
-					swal(nameProduct, "is added to wishlist !", "success");
-
-					$(this).addClass('js-addedwish-detail');
-					$(this).off('click');
-				});
-			});
+			// $('.js-addwish-detail').each(function(){
+			// 	var nameProduct = $(this).parent().parent().parent().find('.js-name-detail').html();
+			//
+			// 	$(this).on('click', function(){
+			// 		swal(nameProduct, "is added to cart !", "success");
+			//
+			// 		$(this).addClass('js-addedwish-detail');
+			// 		$(this).off('click');
+			// 	});
+			// });
 
 			/*---------------------------------------------*/
 
@@ -128,7 +157,10 @@
 					swal(nameProduct, "is added to cart !", "success");
 				});
 			});
+
+
 		}
+		haiku();
 	</script>
 <!--===============================================================================================-->
 	<script src="{% static  'vendor/perfect-scrollbar/perfect-scrollbar.min.js' %}"></script>
@@ -198,9 +230,104 @@
 			})
 		})
 
-	</script>
+</script>
 <!--===============================================================================================-->
 	<script src="{% static  'js/main.js' %}"></script>
+
+
+<script >
+			var db = new PouchDB('cart');
+			var remoteCouch = false;
+			function addToCart(id,name,pieces,image) {
+						var book = {
+							_id: String(id),
+							name: name,
+							image:image,
+							pieces: pieces,
+							instock: true,
+							bookid :id,
+							type:"book"
+						};
+						db.put(book, function callback(err, result) {
+							if (!err) {
+								console.log('Successfully add to cart !');
+								markCartBooks();
+							}else {
+								alert("add cart->"+err);
+							}
+						});
+			}
+
+			function removeFromCart(id){
+
+				db.get(String(id), function(err, doc) {
+					 if (err) {
+							return console.log(err);
+					 } else {
+
+						 db.remove(doc._id,doc._rev,function callback(err, result) {
+							 if (!err) {
+								 console.log('Successfully remove from cart !');
+								 markCartBooks();
+							 }else {
+								 alert("remove cart-->"+err);
+							 }
+						 });
+					 }
+				});
+
+			}
+
+
+       function gettinyBook(id,name,pieces,image){
+
+				 var html = "<li class='header-cart-item flex-w flex-t m-b-15' id='cart_tiny_"+id+"' >"
+				 html=html+"<div class='header-cart-item-img cart_item_img' data-bookid='"+id+"'><img src='/"+image+"' alt='IMG'></div> <div class='header-cart-item-txt p-t-8'>"
+				 html=html+"<a href='#' class='header-cart-item-name hov-cl1 trans-04'>"+name+"</a> <span class='header-cart-item-info'>No. of Pieces:"+pieces+"</span></div></li>"
+         return html;
+			 }
+			$('.js-show-cart').on('click',function(){
+
+					db.allDocs({
+					       include_docs: true,
+				        attachments: true
+					}).then(function (result) {
+              $("#cartdata").html("");
+							result.rows.forEach(function(data){
+								$("#cartdata").append(gettinyBook(data.doc._id,data.doc.name,data.doc.pieces,data.doc.image));
+							});
+
+					}).catch(function (err) {
+				         	console.log(err);
+					});
+	    });
+
+			function markCartBooks(){
+        $(".cart_item").removeClass("js-addedwish-b2");
+				$(".cart_item").data("incart",false);
+
+				db.allDocs({
+							 include_docs: true,
+							attachments: true
+				}).then(function (result) {
+
+						result.rows.forEach(function(data){
+							$(".cart_"+String(data.doc._id)).addClass("js-addedwish-b2");
+							$(".cart_"+String(data.doc._id)).data("incart",true);
+						});
+
+				}).catch(function (err) {
+								console.log(err);
+				});
+			}
+
+			$("html").on( "click",".cart_item_img",function() {
+            removeFromCart($(this).data("bookid"));
+						$('#cart_tiny_'+String($(this).data("bookid"))).remove();
+      });
+
+markCartBooks();
+</script>
 
 </body>
 </html>

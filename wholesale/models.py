@@ -17,7 +17,7 @@ class Book(models.Model):
 
     def image_tag(self):
         #--hkcheck--flag .. "" use var
-        return mark_safe('<img src="/images/%s" width="100px" height="100px"/>' % self.cover)
+        return mark_safe('<img src="/%s" width="100px" height="100px"/>' % self.cover)
 
     def __unicode__(self):
         pass
@@ -46,7 +46,7 @@ class Piece(models.Model):
     clothType = models.ForeignKey('ClothType', on_delete=models.CASCADE)
     description = models.CharField(blank=True, max_length=500)
     book = models.ForeignKey('Book',on_delete=models.CASCADE,related_name='pieces')
-    cover = models.ImageField(upload_to=Image_Folder) 
+    cover = models.ImageField(upload_to=Image_Folder)
     class Meta:
         verbose_name = 'Piece'
         verbose_name_plural = 'Pieces'
