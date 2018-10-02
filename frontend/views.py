@@ -12,7 +12,7 @@ class PageView:
         self.data = {}
         brands = Brand.objects.all()
         self.data["brands"] = Brand.objects.all()
-        pass
+        self.data["clothtypes"] = ClothType.objects.all()
 
     def home(self, request):
         slides = Slider.objects.all()
@@ -33,12 +33,19 @@ class PageView:
         return render(request, 'wholesale/book.html',self.data)
 
     def books(self,request):
+        kargs = {}
         if request.GET:
             if request.GET.get("brands"):
                 brandName = request.GET.get("brands").split(",")
-                books = Book.objects.filter(brand__name__in=brandName)
-        else:
-            books = [ book for book in Book.objects.all()] *100
+                kargs["brand__name__in"] = brandName
+
+            if request.GET.get("clothtypes"):
+                clothtypesName = request.GET.get("clothtypes").split(",")
+                booksPk = Piece.objects.filter(clothType__name__in=clothtypesName)
+                kargs["pk__in"] = booksPk
+
+
+        books = Book.objects.filter(**kargs)
         self.data["books"] =books
         return render(request, 'wholesale/books.html',self.data)
 
