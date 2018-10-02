@@ -311,11 +311,15 @@
 							attachments: true
 				}).then(function (result) {
 
+						var i =0;
 						result.rows.forEach(function(data){
 							$(".cart_"+String(data.doc._id)).addClass("js-addedwish-b2");
 							$(".cart_"+String(data.doc._id)).data("incart",true);
+							i=i+1;
 						});
 
+						$("#cart_count").attr("data-notify",i);
+						$("#cart_count_m").attr("data-notify",i);
 				}).catch(function (err) {
 								console.log(err);
 				});
