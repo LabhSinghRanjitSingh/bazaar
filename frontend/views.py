@@ -60,6 +60,10 @@ class PageView:
         self.init()
         return render(request,'wholesale/contactus.html',self.data)
 
+    def shoppingCart(self,request):
+        self.init()
+        return render(request,'wholesale/shopingcart.html',self.data)
+
 class UserViewSet(viewsets.ModelViewSet):
     """
     API endpoint that allows users to be viewed or edited.

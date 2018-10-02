@@ -27,4 +27,5 @@ urlpatterns = [
     url(r'^api/books/(?P<id>[0-9]*)/views$',pageView.book,name='book'),
     url(r'^books/$',pageView.books,name='books'),
     url(r'^contactus/$',pageView.contactus,name='contactus'),
+    url(r'^shopingcart/$',pageView.shoppingCart,name='shopingCart'),
 ]
