@@ -9,32 +9,41 @@ from django.db.models import Count
 
 class PageView:
     def __init__(self):
+        self.data = {}
+        brands = Brand.objects.all()
+        self.data["brands"] = Brand.objects.all()
         pass
 
     def home(self, request):
         slides = Slider.objects.all()
         tags = Scroller.objects.values('tag').annotate(dcount=Count('tag'))
-        brands = Brand.objects.all()
         tagsData = {}
         for tag in tags:
             tagsData[tag["tag"]] = [ x.book for x in Scroller.objects.filter(tag=tag["tag"])]
-        data = {"slides":slides,"tagsData":tagsData,"tags":tags,"brands":brands}
-        print(tagsData)
-        return render(request, 'wholesale/index.html',data)
+
+        self.data["slides"] = slides
+        self.data["tagsData"] = tagsData
+        self.data["tags"] = tags
+
+        return render(request, 'wholesale/index.html',self.data)
 
     def book(self,request,id):
         book = Book.objects.get(pk=int(id))
-        data = {"book":book}
-        return render(request, 'wholesale/book.html',data)
+        self.data["book"] =book
+        return render(request, 'wholesale/book.html',self.data)
 
     def books(self,request):
-        books = Book.objects.all()
-        brands = Brand.objects.all()
-        data = {"books":books,"brands":brands}
-        return render(request, 'wholesale/books.html',data)
+        if request.GET:
+            if request.GET.get("brands"):
+                brandName = request.GET.get("brands").split(",")
+                books = Book.objects.filter(brand__name__in=brandName)
+        else:
+            books = [ book for book in Book.objects.all()] *100
+        self.data["books"] =books
+        return render(request, 'wholesale/books.html',self.data)
 
     def contactus(self,request):
-        return render(request,'wholesale/contactus.html')
+        return render(request,'wholesale/contactus.html',self.data)
 
 class UserViewSet(viewsets.ModelViewSet):
     """
