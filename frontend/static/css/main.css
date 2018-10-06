@@ -390,10 +390,10 @@ Input, textarea : 14px/1.6 '', Arial, sans-serif;
   min-width: 178px;
   max-width: 225px;
   background-color: #fff;
-  transition: all 0.4s;
-  -webkit-transition: all 0.4s;
-  -o-transition: all 0.4s;
-  -moz-transition: all 0.4s;
+  transition: all 0.2s;
+  -webkit-transition: all 0.2s;
+  -o-transition: all 0.2s;
+  -moz-transition: all 0.2s;
   padding: 5px 0;
 
   box-shadow: 0 1px 5px 0px rgba(0,0,0,0.2);
@@ -410,10 +410,10 @@ Input, textarea : 14px/1.6 '', Arial, sans-serif;
   position: relative;
   background-color: transparent;
 
-  transition: all 0.4s;
-  -webkit-transition: all 0.4s;
-  -o-transition: all 0.4s;
-  -moz-transition: all 0.4s;
+  transition: all 0.2s;
+  -webkit-transition: all 0.2s;
+  -o-transition: all 0.2s;
+  -moz-transition: all 0.2s;
 }
 
 .main-menu > li > .sub-menu {
@@ -431,10 +431,10 @@ Input, textarea : 14px/1.6 '', Arial, sans-serif;
   padding: 8px 20px;
   width: 100%;
 
-  transition: all 0.4s;
-  -webkit-transition: all 0.4s;
-  -o-transition: all 0.4s;
-  -moz-transition: all 0.4s;
+  transition: all 0.2s;
+  -webkit-transition: all 0.2s;
+  -o-transition: all 0.2s;
+  -moz-transition: all 0.2s;
 }
 
 /*---------------------------------------------*/
