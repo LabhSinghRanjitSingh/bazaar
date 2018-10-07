@@ -151,7 +151,8 @@
 						name =  $(this).data("name");
 						pieces = $(this).data("pieces");
 						image = $(this).data("image");
-						addToCart(id,name,pieces,image);
+						brand= $(this).data("brand")
+						addToCart(id,name,pieces,image,brand);
 
 						swal(nameProduct, "is added to cart !", "success");
 						// $(this).addClass('js-addedwish-b2');
@@ -238,7 +239,7 @@
 <script >
 			var db = new PouchDB('cart');
 			var remoteCouch = false;
-			function addToCart(id,name,pieces,image) {
+			function addToCart(id,name,pieces,image,brand) {
 						var book = {
 							_id: String(id),
 							name: name,
@@ -246,6 +247,7 @@
 							pieces: pieces,
 							instock: true,
 							bookid :id,
+							brand:brand,
 							type:"book"
 						};
 						db.put(book, function callback(err, result) {
@@ -286,6 +288,32 @@
 				 html=html+"<a href='#' class='header-cart-item-name hov-cl1 trans-04'>"+name+"</a> <span class='header-cart-item-info'>No. of Pieces:"+pieces+"</span></div></li>"
          return html;
 			 }
+
+			 function getViewCartTable(id,name,brand,pieces,image){
+				 var html ="<tr class='table_row' id='cart_tiny_"+id+"'><td class='column-1'>";
+				 html=html+"<div class='how-itemcart1 cart_item_img' data-bookid='"+id+"'><img src='/"+image+"' alt='IMG'></div></td>";
+				 html=html+"<td class='column-2'>"+name+"</td><td class='column-3'>"+brand+"</td><td class='column-4'>"+pieces+"</td>	<td class='columnn-5'></td></tr>";
+
+				 return html;
+			 }
+
+			 $('.js-view-shoppingcart').ready(function(){
+
+				 db.allDocs({
+								include_docs: true,
+							 attachments: true
+				 }).then(function (result) {
+						 $("#cart_table_data").html("");
+						 result.rows.forEach(function(data){
+
+							$("#cart_table_data").append(getViewCartTable(data.doc._id,data.doc.name,data.doc.brand,data.doc.pieces,data.doc.image));
+						 });
+
+				 }).catch(function (err) {
+								 console.log(err);
+				 });
+		 });
+
 			$('.js-show-cart').on('click',function(){
 
 					db.allDocs({
@@ -294,6 +322,7 @@
 					}).then(function (result) {
               $("#cartdata").html("");
 							result.rows.forEach(function(data){
+
 								$("#cartdata").append(gettinyBook(data.doc._id,data.doc.name,data.doc.pieces,data.doc.image));
 							});
 
@@ -328,6 +357,7 @@
 			$("html").on( "click",".cart_item_img",function() {
             removeFromCart($(this).data("bookid"));
 						$('#cart_tiny_'+String($(this).data("bookid"))).remove();
+				
       });
 
 markCartBooks();

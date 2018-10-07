@@ -7,13 +7,13 @@
 <!-- breadcrumb -->
 <div class="container">
 	<div class="bread-crumb flex-w p-l-25 p-r-15 p-t-30 p-lr-0-lg">
-		<a href="index.html" class="stext-109 cl8 hov-cl1 trans-04">
+		<a href="\" class="stext-109 cl8 hov-cl1 trans-04">
 			Home
 			<i class="fa fa-angle-right m-l-9 m-r-10" aria-hidden="true"></i>
 		</a>
 
 		<span class="stext-109 cl4">
-			Shoping Cart
+			Shopping Cart
 		</span>
 	</div>
 </div>
@@ -35,20 +35,9 @@
 								<th class="column-4">Pieces</th>
 								<th class="column-5"></th>
 							</tr>
-               <tbody>
-								 <tr class="table_row">
-									<td class="column-1">
-										<div class="how-itemcart1">
-											<img src="/images/item-cart-04.jpg" alt="IMG">
-										</div>
-									</td>
-									<td class="column-2">Fresh Strawberries</td>
-									<td class="column-3">$ 36.00</td>
+               <tbody id="cart_table_data">
 
-									<td class="column-4">$ 36.00</td>
-									<td class="columnn-5"></td>
-								</tr>
-							 </tbody
+							</tbody>
 
 						</table>
 					</div>
@@ -143,9 +132,6 @@
 		</div>
 	</div>
 </form>
-
-
-
 
 {% include 'wholesale/footer.html' %}
 {% endblock %}
