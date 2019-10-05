@@ -1,9 +1,10 @@
 from django.shortcuts import render
 from django.contrib.auth.models import User, Group
-from wholesale.models import Book,Brand,Piece,ClothType,PieceImage
+from wholesale.models import Book, Brand, Piece, ClothType, PieceImage
 from rest_framework import viewsets
-from frontend.serializers import UserSerializer, GroupSerializer,BookSerializer,BrandSerializer,PieceSerializer,ClothTypeSerializer,PieceImageSerializer
-from frontend.models import Slider,Scroller
+from frontend.serializers import UserSerializer, GroupSerializer, BookSerializer, BrandSerializer, PieceSerializer, \
+    ClothTypeSerializer, PieceImageSerializer
+from frontend.models import Slider, Scroller
 from django.db.models import Count
 
 
@@ -16,7 +17,7 @@ class PageView:
         brands = Brand.objects.all()
         self.data["brands"] = Brand.objects.all()
         self.data["clothtypes"] = ClothType.objects.all()
-        self.data["piecesCountList"] = ["1-5","6-10","11-15","16-20","More than 20"]
+        self.data["piecesCountList"] = ["1-5", "6-10", "11-15", "16-20", "More than 20"]
 
     def home(self, request):
         self.init()
@@ -24,21 +25,21 @@ class PageView:
         tags = Scroller.objects.values('tag').annotate(dcount=Count('tag'))
         tagsData = {}
         for tag in tags:
-            tagsData[tag["tag"]] = [ x.book for x in Scroller.objects.filter(tag=tag["tag"])]
+            tagsData[tag["tag"]] = [x.book for x in Scroller.objects.filter(tag=tag["tag"])]
 
         self.data["slides"] = slides
         self.data["tagsData"] = tagsData
         self.data["tags"] = tags
 
-        return render(request, 'wholesale/index.html',self.data)
+        return render(request, 'wholesale/index.html', self.data)
 
-    def book(self,request,id):
+    def book(self, request, id):
         self.init()
         book = Book.objects.get(pk=int(id))
-        self.data["book"] =book
-        return render(request, 'wholesale/book.html',self.data)
+        self.data["book"] = book
+        return render(request, 'wholesale/book.html', self.data)
 
-    def books(self,request):
+    def books(self, request):
         self.init()
         kargs = {}
         if request.GET:
@@ -48,21 +49,22 @@ class PageView:
 
             if request.GET.get("clothtypes"):
                 clothtypesName = request.GET.get("clothtypes").split(",")
-                booksPk = Piece.objects.filter(clothType__name__in=clothtypesName)
-                kargs["pk__in"] = booksPk
-
+                pieces = Piece.objects.filter(clothType__name__in=clothtypesName)
+                kargs["pk__in"] = [piece.book.id for piece in pieces]
 
         books = Book.objects.filter(**kargs)
-        self.data["books"] =books
-        return render(request, 'wholesale/books.html',self.data)
 
-    def contactus(self,request):
-        self.init()
-        return render(request,'wholesale/contactus.html',self.data)
+        self.data["books"] = books
+        return render(request, 'wholesale/books.html', self.data)
 
-    def shoppingCart(self,request):
+    def contactus(self, request):
         self.init()
-        return render(request,'wholesale/shopingcart.html',self.data)
+        return render(request, 'wholesale/contactus.html', self.data)
+
+    def shoppingCart(self, request):
+        self.init()
+        return render(request, 'wholesale/shopingcart.html', self.data)
+
 
 class UserViewSet(viewsets.ModelViewSet):
     """
@@ -95,12 +97,14 @@ class BrandViewSet(viewsets.ModelViewSet):
     queryset = Brand.objects.all()
     serializer_class = BrandSerializer
 
+
 class PieceViewSet(viewsets.ModelViewSet):
     """
     API endpoint that allows Book to be viewed or edited.
     """
     queryset = Piece.objects.all()
     serializer_class = PieceSerializer
+
 
 class ClothTypeViewSet(viewsets.ModelViewSet):
     """

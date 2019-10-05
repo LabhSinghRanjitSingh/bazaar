@@ -68,8 +68,8 @@
         <ul>
           {% for piecesCount in  piecesCountList %}
             <li class="p-b-6">
-                  <a href="#" class="filter-link stext-106 trans-04">
-                    {{piecesCount}}
+                  <a href="/books/?piecescount={{piecesCount}}" class="filter-link stext-106 trans-04">
+                    <input type="radio"> {{piecesCount}}
                   </a>
              </li>
           {% endfor %}
