@@ -36,9 +36,16 @@
         <ul>
           {% for brand in brands %}
             <li class="p-b-6">
-              <a href="/books/?brands={{brand.name}}" class="filter-link stext-106 trans-04">
-                {{brand.name}}
-              </a>
+            <div class="row">
+                     <div class="col-sm-2">
+                         <input type="checkbox" name="filter_brand">
+                     </div>
+                     <div class="col-sm-*">
+                        <a href="/books/?brands={{brand.name}}" class="filter-link stext-106 trans-04">
+                            {{brand.name}}
+                          </a>
+               </div>
+
             </li>
           {% endfor %}
         </ul>
@@ -52,9 +59,15 @@
         <ul>
           {% for clothtype in clothtypes%}
             <li class="p-b-6">
-              <a href="/books/?clothtypes={{clothtype.name}}" class="filter-link stext-106 trans-04 filter-link-active">
-                {{clothtype.name}}
-              </a>
+              <div class="row">
+                     <div class="col-sm-2">
+                         <input type="checkbox" name="filter_clothtype">
+                     </div>
+                     <div class="col-sm-*">
+                        <a href="/books/?clothtypes={{clothtype.name}}" class="filter-link stext-106 trans-04">
+                            {{clothtype.name}}
+                        </a>
+               </div>
             </li>
           {% endfor %}
         </ul>
@@ -68,9 +81,17 @@
         <ul>
           {% for piecesCount in  piecesCountList %}
             <li class="p-b-6">
-                  <a href="/books/?piecescount={{piecesCount}}" class="filter-link stext-106 trans-04">
-                    <input type="radio"> {{piecesCount}}
-                  </a>
+                 <div class="row">
+                     <div class="col-sm-2">
+                         <input type="radio" name="filter_piecescount">
+                     </div>
+                     <div class="col-sm-*">
+                         <a href="/books/?piecescount={{piecesCount}}" class="filter-link stext-106 trans-04">
+                           {{piecesCount}}
+                         </a>
+                     </div>
+                 </div>
+
              </li>
           {% endfor %}
         </ul>
