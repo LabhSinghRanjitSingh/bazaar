@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from wholesale.models import Book,Brand,ClothType,Piece,PieceImage
+from wholesale.models import Book, Brand, ClothType, Piece, PieceImage, Tag
 
 
 class PieceImageInline(admin.TabularInline):
@@ -23,6 +23,10 @@ class AdminBrand(admin.ModelAdmin):
     list_display =['name']
 
 
+class AdminTag(admin.ModelAdmin):
+    list_display =['name']
+
+
 
 
 class AdminPiece(admin.ModelAdmin):
@@ -40,6 +44,7 @@ class AdminClothType(admin.ModelAdmin):
 
 admin.site.register(Book,AdminBook)
 admin.site.register(Brand,AdminBrand)
+admin.site.register(Tag,AdminTag)
 admin.site.register(Piece,AdminPiece)
 admin.site.register(ClothType,AdminClothType)
 # admin.site.register(PieceImage,AdminPieceImage)

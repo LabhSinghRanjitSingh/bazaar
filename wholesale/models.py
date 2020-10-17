@@ -11,6 +11,7 @@ class Book(models.Model):
     brand = models.ManyToManyField('Brand')
     cover = models.ImageField(upload_to=Image_Folder)
     description = models.CharField(blank=True, max_length=500)
+    tags = models.ManyToManyField('Tag')
 
     class Meta:
         verbose_name = 'Book'
@@ -35,6 +36,21 @@ class Brand(models.Model):
     class Meta:
         verbose_name = 'Brand'
         verbose_name_plural = 'Brands'
+
+    def __unicode__(self):
+        pass
+
+    def __str__(self):
+        return self.name
+
+
+class Tag(models.Model):
+    # TODO: Define fields here
+    name = models.CharField(blank=True, max_length=100)
+
+    class Meta:
+        verbose_name = 'Tag'
+        verbose_name_plural = 'Tags'
 
     def __unicode__(self):
         pass
