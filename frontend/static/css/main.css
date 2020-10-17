@@ -3496,3 +3496,7 @@ input.num-product::-webkit-inner-spin-button {
       background-color: transparent;
       border-color: #cccccc;
     }
+
+
+
+.pagination>li>a { border-radius: 50% !important;margin: 0 5px;}

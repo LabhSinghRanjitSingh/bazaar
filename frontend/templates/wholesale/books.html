@@ -15,9 +15,37 @@
 
         <!-- Load more -->
         <div class="flex-c-m flex-w w-full p-t-45">
-          <a href="#" class="flex-c-m stext-101 cl5 size-103 bg2 bor1 hov-btn1 p-lr-15 trans-04">
-            Load More
-          </a>
+           <nav aria-label="Page navigation example">
+              <ul class="pagination">
+
+              {% if page != 1 %}
+               <li class="page-item">
+                  <a  class="page-link"   href="/books/?page={{previous_page}}" aria-label="Previous">
+                    <span aria-hidden="true">«</span>
+                    <span class="sr-only">Previous</span>
+                  </a>
+                </li>
+              {%endif%}
+
+
+
+                  {% for page_url in pages_url %}
+                      {% if page == page_url %}
+                            <li class="page-item active"><a class="page-link" href="/books/?page={{page_url}}">{{ page_url }}</a></li>
+                      {% else %}
+                           <li class="page-item"><a class="page-link" href="/books/?page={{page_url}}">{{ page_url }}</a></li>
+                      {% endif %}
+                  {% endfor %}
+              {% if not last_page %}
+                <li class="page-item">
+                  <a class="page-link" href="/books/?page={{next_page}}" aria-label="Next">
+                    <span aria-hidden="true">»</span>
+                    <span class="sr-only">Next</span>
+                  </a>
+                </li>
+              {% endif %}
+              </ul>
+           </nav>
         </div>
       </div>
     </div>

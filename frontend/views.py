@@ -1,3 +1,5 @@
+import math
+
 from django.http import JsonResponse
 from django.shortcuts import render
 from django.contrib.auth.models import User, Group
@@ -46,7 +48,12 @@ class PageView:
     def books(self, request):
         self.init()
         kargs = {}
+        page = 1
         if request.GET:
+
+            if request.GET.get("page"):
+                page = int(request.GET.get("page"))
+
             if request.GET.get("brands"):
                 brandName = request.GET.getlist("brands")
                 kargs["brand__name__in"] = brandName
@@ -87,8 +94,39 @@ class PageView:
                 kargs["pk__in"] = list(book_ids)
 
         books = Book.objects.filter(**kargs)
+        books_count = books.count()
+        page_size = 20
+        self.data['last_page'] = False
+        if page > int(math.ceil(books_count / (1.0 * page_size))):
+            page = int(math.ceil(books_count / (1.0 * page_size)))
+
+        if page >= int(math.ceil(books_count / (1.0 * page_size))):
+            self.data['last_page'] = True
+
+        books = books[(page - 1) * page_size:page * page_size]
+        self.data["page"] = page
+
+        pages_url = []
+
+        if page < 6:
+            for x in range(1, 6):
+                pages_url.append(x)
+        else:
+            for x in range(page - 3, min(page + 3, int(math.ceil(books_count / (1.0 * page_size)))) + 1):
+                pages_url.append(x)
+
+        next_page = page + 1
+        previous_page = page - 1
+
+        if previous_page <= 1:
+            previous_page = 1
+
+        self.data["next_page"] = next_page
+        self.data["previous_page"] = previous_page
 
         self.data["books"] = books
+        self.data["pages_url"] = pages_url
+
         return render(request, 'wholesale/books.html', self.data)
 
     def contactus(self, request):
@@ -109,8 +147,8 @@ class PageView:
             country = request.POST.get('country')
             book_ids = map(lambda x: int(x), eval(request.POST.get('books')))
 
-            contactInfo = ContactInfo(name=name,businessName=businessName,phoneNumber=phoneNumber,
-                                      state=state,country=country)
+            contactInfo = ContactInfo(name=name, businessName=businessName, phoneNumber=phoneNumber,
+                                      state=state, country=country)
             contactInfo.save()
             order = Order()
             order.contactInfo = contactInfo
@@ -119,10 +157,6 @@ class PageView:
             for book in books:
                 order.cartBooks.add(book)
             order.save()
-
-
-
-
 
         return JsonResponse({'message': 'done'})
 

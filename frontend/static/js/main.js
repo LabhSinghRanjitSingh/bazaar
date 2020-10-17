@@ -37,7 +37,7 @@
         }
     });
 
-    $('#myBtn').on("click", function () {
+    $('html').on("click",'#myBtn',function () {
         $('html, body').animate({scrollTop: 0}, 300);
     });
 
