@@ -341,7 +341,10 @@
                 success: function (data) {
                    if(data.message == 'done'){
                        db.destroy();
-                       window.location.href = "/contactus/";
+                       swal('Enquiry Submitted',"We have received your query and will contact you soon! Will be redirecting you to Contact Us Page!", "success").then(function(){
+                           window.location.href='/contactus/'
+                       });
+
                    }
                 },
                 error: function(XMLHttpRequest, textStatus, errorThrown){

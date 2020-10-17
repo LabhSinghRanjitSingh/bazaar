@@ -1,7 +1,7 @@
 from django.http import JsonResponse
 from django.shortcuts import render
 from django.contrib.auth.models import User, Group
-from wholesale.models import Book, Brand, Piece, ClothType, PieceImage
+from wholesale.models import Book, Brand, Piece, ClothType, PieceImage, ContactInfo, Order
 from rest_framework import viewsets
 from frontend.serializers import UserSerializer, GroupSerializer, BookSerializer, BrandSerializer, PieceSerializer, \
     ClothTypeSerializer, PieceImageSerializer
@@ -102,7 +102,27 @@ class PageView:
 
     def createOrder(self, request):
         if request.POST:
-            print(request.POST)
+            name = request.POST.get('name')
+            businessName = request.POST.get('businessName')
+            phoneNumber = request.POST.get('phoneNumber')
+            state = request.POST.get('state')
+            country = request.POST.get('country')
+            book_ids = map(lambda x: int(x), eval(request.POST.get('books')))
+
+            contactInfo = ContactInfo(name=name,businessName=businessName,phoneNumber=phoneNumber,
+                                      state=state,country=country)
+            contactInfo.save()
+            order = Order()
+            order.contactInfo = contactInfo
+            books = Book.objects.filter(pk__in=book_ids)
+            order.save()
+            for book in books:
+                order.cartBooks.add(book)
+            order.save()
+
+
+
+
 
         return JsonResponse({'message': 'done'})
 
