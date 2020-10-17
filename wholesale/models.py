@@ -1,3 +1,5 @@
+import datetime
+
 from django.db import models
 from django.utils.safestring import mark_safe
 
@@ -63,6 +65,7 @@ class Piece(models.Model):
     # TODO: Define fields here
     name = models.CharField(blank=True, max_length=100)
     clothType = models.ForeignKey('ClothType', on_delete=models.CASCADE)
+    dupattaType = models.ForeignKey('ClothType', on_delete=models.CASCADE, related_name='dupatta')
     description = models.CharField(blank=True, max_length=500)
     book = models.ForeignKey('Book', on_delete=models.CASCADE, related_name='pieces')
     cover = models.ImageField(upload_to=Image_Folder)
@@ -109,3 +112,31 @@ class ClothType(models.Model):
 
     def __str__(self):
         return self.name
+
+
+class ContactInfo(models.Model):
+    name = models.CharField(max_length=1000)
+    businessName = models.CharField(max_length=1000)
+    city = models.CharField(max_length=1000)
+    state = models.CharField(max_length=1000)
+    country = models.CharField(max_length=1000)
+    email = models.EmailField(blank=True, null=True, max_length=100)
+    phoneNumber = models.CharField(blank=True, null=True, max_length=100)
+    notes = models.CharField(max_length=1000)
+
+    def __str__(self):
+        return "%s:%s" % (self.name,self.businessName)
+
+
+class Order(models.Model):
+    OrderStatus = (
+        ("NEW", 'New'),
+        ("CONTACTED", "Contacted"),
+        ("RECEIVED", 'Received'),
+        ("REJECTED", 'Rejected')
+    )
+
+    contactInfo = models.ForeignKey('ContactInfo', on_delete=models.CASCADE, related_name='orders')
+    cartBooks = models.ManyToManyField('Book')
+    date = models.DateField("Date", default=datetime.date.today)
+    status = models.CharField(max_length=100, choices=OrderStatus, default="NEW")

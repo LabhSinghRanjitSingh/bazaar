@@ -19,6 +19,8 @@ class PageView:
         self.data["brands"] = Brand.objects.all()
         self.data["clothtypes"] = ClothType.objects.all()
         self.data["piecesCountList"] = [["1","1-5"], ["2","6-10"], ["3","11-15"], ["4","16-20"], ["5","More than 20"]]
+        self.data['filters'] = {}
+
 
     def home(self, request):
         self.init()
@@ -45,25 +47,43 @@ class PageView:
         kargs = {}
         if request.GET:
             if request.GET.get("brands"):
-                brandName = request.GET.get("brands").split(",")
-                kargs["brand__name__icontains"] = brandName
+                brandName = request.GET.getlist("brands")
+                kargs["brand__name__in"] = brandName
+                self.data['filters']["brands"]= brandName
+
 
             if request.GET.get("clothtypes"):
-                clothtypesName = request.GET.get("clothtypes").split(",")
-                pieces = Piece.objects.filter(clothType__name__icontains=clothtypesName)
-                kargs["pk__icontains"] = [piece.book.id for piece in pieces]
+                clothtypesName = request.GET.getlist("clothtypes")
+                pieces = Piece.objects.filter(clothType__name__in=clothtypesName)
+                kargs["pk__in"] = [piece.book.id for piece in pieces]
+                self.data['filters']["clothtypes"] = clothtypesName
+
+            if request.GET.get("nopieces"):
+                noOfPieces = request.GET.get("nopieces")
+                self.data['filters']["nopieces"] = noOfPieces
+
+                if int(noOfPieces) in range(1,5):
+                    a = ((int(noOfPieces)-1) * 5)+1
+                    b = a + 5
+                    _books = Book.objects.annotate(num_pieces=Count('pieces')).filter(num_pieces__gte=a,num_pieces__lt=b)
+                    _books_ids = [book.id for book in _books]
+                    kargs["pk__in"] = list(_books_ids)
+                else:
+                    _books = Book.objects.annotate(num_pieces=Count('pieces')).filter(num_pieces__gt=20)
+                    _books_ids = [book.id for book in _books]
+                    kargs["pk__in"] = list(_books_ids)
+
 
             if request.GET.get("search"):
                 query  = request.GET.get("search")
-                brand_books = Book.objects.filter(Q(brand__name__icontains=query) | Q(name__icontains=query) )
+                brand_books = Book.objects.filter(Q(brand__name__icontains=query) | Q(name__icontains=query) | Q(tags__name__icontains=query) )
                 brand_books_ids = [book.id for book in brand_books]
-                pieces = Piece.objects.filter(clothType__name__icontains=query)
+                pieces = Piece.objects.filter( Q(dupattaType__name__icontains=query) | Q(clothType__name__icontains=query))
                 book_ids = [piece.book.id for piece in pieces]
                 book_ids.extend(brand_books_ids)
                 book_ids = set(book_ids)
                 kargs["pk__in"]=list(book_ids)
 
-        print(kargs)        
         books = Book.objects.filter(**kargs)
         
         self.data["books"] = books
