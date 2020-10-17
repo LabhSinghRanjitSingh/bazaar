@@ -30,10 +30,10 @@
 
 
                   {% for page_url in pages_url %}
-                      {% if page == page_url %}
-                            <li class="page-item active"><a class="page-link" href="/books/?page={{page_url}}">{{ page_url }}</a></li>
+                      {% if page == page_url.0 %}
+                            <li class="page-item active"><a class="page-link" href="{{page_url.1}}">{{ page_url.0 }}</a></li>
                       {% else %}
-                           <li class="page-item"><a class="page-link" href="/books/?page={{page_url}}">{{ page_url }}</a></li>
+                           <li class="page-item"><a class="page-link" href="{{page_url.1}}">{{ page_url.0}}</a></li>
                       {% endif %}
                   {% endfor %}
               {% if not last_page %}

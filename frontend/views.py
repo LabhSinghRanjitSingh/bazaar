@@ -24,6 +24,7 @@ class PageView:
         self.data["piecesCountList"] = [["1", "1-5"], ["2", "6-10"], ["3", "11-15"], ["4", "16-20"],
                                         ["5", "More than 20"]]
         self.data['filters'] = {}
+        self.data["search"] = None
 
     def home(self, request):
         self.init()
@@ -92,6 +93,7 @@ class PageView:
                 book_ids.extend(brand_books_ids)
                 book_ids = set(book_ids)
                 kargs["pk__in"] = list(book_ids)
+                self.data["search"] = query
 
         books = Book.objects.filter(**kargs)
         books_count = books.count()
@@ -108,12 +110,16 @@ class PageView:
 
         pages_url = []
 
-        if page < 6:
-            for x in range(1, 6):
-                pages_url.append(x)
-        else:
-            for x in range(page - 3, min(page + 3, int(math.ceil(books_count / (1.0 * page_size)))) + 1):
-                pages_url.append(x)
+        for x in range(max(1, page - 3), min(page + 3, int(math.ceil(books_count / (1.0 * page_size)))) + 1):
+            _url = '/books/?page=%d' % x
+            for key, value in self.data['filters'].items():
+                for value_i in value:
+                    _url += '&%s=%s' % (key, value_i)
+
+            if self.data['search']:
+                _url += '&search=%s' % self.data['search']
+
+            pages_url.append((x, _url))
 
         next_page = page + 1
         previous_page = page - 1
