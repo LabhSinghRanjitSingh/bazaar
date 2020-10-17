@@ -28,4 +28,5 @@ urlpatterns = [
     url(r'^books/$',pageView.books,name='books'),
     url(r'^contactus/$',pageView.contactus,name='contactus'),
     url(r'^shopingcart/$',pageView.shoppingCart,name='shopingCart'),
+    url(r'^createorder/$', pageView.createOrder, name='createOrder'),
 ]
