@@ -1,4 +1,6 @@
 {% load static %}
+
+<!--It is in use in checkout page -->
 <header class="header-v2">
   <!-- Header desktop -->
   <div class="container-menu-desktop trans-03">
@@ -26,7 +28,7 @@
 
             <li>
               <a href="#">Brands</a>
-              <ul class="sub-menu">
+              <ul class="sub-menu customDesktopMenuScroll">
                 {% for brand in brands %}
                    <li><a href="/books/?brands={{brand.name}}">{{brand.name}}</a></li>
                 {% endfor %}
@@ -94,11 +96,11 @@
         <a href="/books/">Shop</a>
       </li>
 
-      <li>
-        <a href="#">{#class="label1 rs1" data-label1="hot"#}
+      <li class="toggleMenu">
+        <a>
           Brands
         </a>
-        <ul class="sub-menu-m">
+        <ul class="sub-menu-m customDesktopMenuScroll">
           {% for brand in brands %}
              <li><a href="/books/?brands={{brand.name}}">{{brand.name}}</a></li>
           {% endfor %}

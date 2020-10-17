@@ -91,6 +91,15 @@
         })
     }
 
+    var toggleMenu = $('.toggleMenu');
+    for(var i =0; i<toggleMenu.length;i++){
+        $(toggleMenu[i]).on('click',function(){
+            $(this).find('.sub-menu-m').slideToggle();
+            $(this).find('.arrow-main-menu-m').toggleClass('turn-arrow-main-menu-m');
+        })
+    }
+
+
     $(window).resize(function(){
         if($(window).width() >= 992){
             if($('.menu-mobile').css('display') == 'block') {
@@ -270,15 +279,41 @@
 
     /*==================================================================
     [ Show modal1 ]*/
+    var from_cart = false;
     $('.js-show-modal1').on('click',function(e){
         e.preventDefault();
         $('.js-modal1').addClass('show-modal1');
     });
 
     $('.js-hide-modal1').on('click',function(){
-        $('.js-modal1').removeClass('show-modal1');
+        if(!from_cart){
+            $('.js-modal1').removeClass('show-modal1');
+        }
+        else{
+            $('.js-modal1').removeClass('show-modal1');
+            $('.js-panel-cart').addClass('show-header-cart');
+            from_cart=false;
+        }
+    });
+    $("html").on( "click",".js-show-modal-from-cart1",function(e){
+        e.preventDefault();
+        $('.js-panel-cart').removeClass('show-header-cart');
+        $('.js-modal1').addClass('show-modal1');
+        from_cart=true;
     });
 
+    $("html").on( "click",".js-show-modal-from-checkout",function(e){
+        e.preventDefault();
+        console.log($('.js-modal1'));
+        $('.js-modal1').addClass('show-modal1');
+    });
 
+    $(document).keydown(function(event) { 
+        if (event.keyCode == 27) { 
+          if($('.show-modal1').length == 1 && $('.swal-overlay--show-modal').length == 0){
+            $('.js-modal1').removeClass('show-modal1');
+          }
+        }
+      });
 
 })(jQuery);

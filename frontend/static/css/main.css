@@ -62,10 +62,10 @@
 
 /*------------------------------------------------------------------
 [ Bootstrap ]*/
-.container {max-width: 1380px;}
+.container {max-width: 1380px}
 
 @media (max-width: 1600px) {
-  .container {max-width: 1200px;}
+  .container {max-width: 1200px}
 }
 
 /*------------------------------------------------------------------
@@ -904,13 +904,13 @@
   -ms-box-shadow: 0 3px 6px 0px rgba(0, 0, 0, 0.18);
 }
 
-.header-cart::after {
+ .header-cart::after {
   content: "";
   display: block;
   width: 100%;
-  height: 9%;
+  height: 5%;
   min-height: 30px;
-}
+} 
 
 .show-header-cart {
   visibility: visible;
@@ -3065,6 +3065,21 @@ input.num-product::-webkit-inner-spin-button {
 }
 
 /*---------------------------------------------*/
+.hov-btn3custom:hover {
+  border-color: black;
+  background-color: black;
+  opacity: 1;
+  color: #fff;
+}
+
+/*---------------------------------------------*/
+.hov-btn3custom {
+  color: white;
+  background-color: black;
+  opacity: 0.6;
+  
+}
+/*---------------------------------------------*/
 .hov-tag1:hover {
   color: #717fe0;
   border-color: #717fe0;
@@ -3226,6 +3241,7 @@ input.num-product::-webkit-inner-spin-button {
 
   .p-0-sm {padding: 0;}
   .p-lr-0-sm {padding-left: 0; padding-right: 0;}
+  .p-lr-5-sm {padding-left: 5px; padding-right: 5px;}
   .p-lr-15-sm {padding-left: 15px; padding-right: 15px;}
   .p-l-0-sm {padding-left: 0;}
   .p-r-0-sm{padding-right: 0;}
@@ -3288,4 +3304,172 @@ input.num-product::-webkit-inner-spin-button {
     padding: 20px;
   }
 
+  
+}
+  /*---------------------------------------------*/
+.customScrollbar{
+  max-height:65vh;
+  
+}
+
+.customScrollbar .ps__thumb-y{
+  background-color: #000;
+}
+/*---------------------------------------------*/
+
+.filterCustomHeight{
+  max-height:45vh;
+  padding-right:10px;
+}
+.filterCustomHeight .ps__thumb-y{
+  background-color: #000;
+}
+ /*---------------------------------------------*/
+
+ .customDesktopMenuScroll{
+    max-height:45vh;
+ }
+
+ .customDesktopMenuScroll .ps__rail-y{
+    opacity:1;
+    margin-right:1px;
+    margin-top:6px;
+  }
+
+  /*---------------------------------------------*/
+
+ .customDesktopMenuScroll-m{
+    max-height:30vh;
+  }
+
+  .customDesktopMenuScroll-m .ps__rail-y{
+    opacity:1;
+    margin-right:1px;
+    margin-top:6px;
+    }
+ /*---------------------------------------------*/
+ 
+  .deleteIcon{
+    display: inline-block;
+    float:right;
+    transform: translateY(-170%);
+    padding-right:15px;
+    color:#666666;
+  }
+ 
+ /*---------------------------------------------*/
+ .columnn-5{
+   text-align:right;
+   padding-right:15px;
+ }
+
+ /*---------------------------------------------*/
+
+@media (max-width:1281px) { 
+  .customScrollbar{ max-height:65vh; padding-right:10px;} 
+  .size-108 { width: 40px;   height: 40px; } 
+  .arrow-slick3 {
+    font-size: 25px;
+    color: #fff;
+  
+    position: absolute;
+    top: 0;
+    width: 40px;
+    height: 40px;
+    background-color: rgba(0,0,0,0.5);
+  
+    -webkit-transition: all 0.4s;
+    -o-transition: all 0.4s;
+    -moz-transition: all 0.4s;
+    transition: all 0.4s;
+  }
+  .filterCustomHeight{
+    max-height:45vh;
+    padding-right:10px;
+  }
+}
+@media (max-width:1025px) {
+  .customScrollbar{ max-height:50vh; padding-right:10px;} 
+  .size-108 { width: 40px;   height: 40px; } 
+  .arrow-slick3 {
+    font-size: 25px;
+    color: #fff;
+  
+    position: absolute;
+    top: 0;
+    width: 40px;
+    height: 40px;
+    background-color: rgba(0,0,0,0.5);
+  
+    -webkit-transition: all 0.4s;
+    -o-transition: all 0.4s;
+    -moz-transition: all 0.4s;
+    transition: all 0.4s;
+  }
+  .filterCustomHeight{
+    max-height:35vh;
+    padding-right:10px;
+  }
+}
+@media (max-width:961px)  {
+  .customScrollbar{ max-height:40vh; padding-right:10px;}
+  .size-108 { width: 30px;   height: 30px; } 
+  .filterCustomHeight{
+    max-height:25vh;
+    padding-right:10px;
+  }
+}
+@media (max-width:641px)  { .customScrollbar{ max-height:30vh; padding-right:10px;}
+.filterCustomHeight{
+  max-height:20vh;
+  padding-right:10px;
+} }
+@media (max-width:481px)  { 
+  .customScrollbar{ max-height:28vh; padding-right:10px;} 
+  .size-108 { width: 25px;   height: 25px; }
+  .arrow-slick3 {
+    font-size: 18px;
+    color: #fff;
+  
+    position: absolute;
+    top: 0;
+    width: 25px;
+    height: 25px;
+    background-color: rgba(0,0,0,0.5);
+  
+    -webkit-transition: all 0.4s;
+    -o-transition: all 0.4s;
+    -moz-transition: all 0.4s;
+    transition: all 0.4s;
+  }
+  .filterCustomHeight{
+    max-height:20vh;
+    padding-right:10px;
+  }
+} 
+@media (max-width:320px)  { .customScrollbar{ max-height:25vh; padding-right:10px;}
+.filterCustomHeight{
+  max-height:20vh;
+  padding-right:10px;
+  } 
+} 
+
+ /*---------------------------------------------*/
+ .gallery-lb{
+   display:grid;
+   align-items: center;
+ }
+
+ /*---------------------------------------------*/
+ .customStrikeThrough{
+  width: 100%; 
+  text-align: center; 
+  border-bottom: 1px dotted; 
+  line-height: 0.1em;
+  margin: 10px 0 20px;
+ }
+
+ .customStrikeThrough span { 
+  background:#fff; 
+  padding:0 10px; 
 }

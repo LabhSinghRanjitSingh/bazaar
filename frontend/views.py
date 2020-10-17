@@ -6,6 +6,7 @@ from frontend.serializers import UserSerializer, GroupSerializer, BookSerializer
     ClothTypeSerializer, PieceImageSerializer
 from frontend.models import Slider, Scroller
 from django.db.models import Count
+from django.db.models import Q
 
 
 class PageView:
@@ -17,7 +18,7 @@ class PageView:
         brands = Brand.objects.all()
         self.data["brands"] = Brand.objects.all()
         self.data["clothtypes"] = ClothType.objects.all()
-        self.data["piecesCountList"] = ["1-5", "6-10", "11-15", "16-20", "More than 20"]
+        self.data["piecesCountList"] = [["1","1-5"], ["2","6-10"], ["3","11-15"], ["4","16-20"], ["5","More than 20"]]
 
     def home(self, request):
         self.init()
@@ -45,15 +46,26 @@ class PageView:
         if request.GET:
             if request.GET.get("brands"):
                 brandName = request.GET.get("brands").split(",")
-                kargs["brand__name__in"] = brandName
+                kargs["brand__name__icontains"] = brandName
 
             if request.GET.get("clothtypes"):
                 clothtypesName = request.GET.get("clothtypes").split(",")
-                pieces = Piece.objects.filter(clothType__name__in=clothtypesName)
-                kargs["pk__in"] = [piece.book.id for piece in pieces]
+                pieces = Piece.objects.filter(clothType__name__icontains=clothtypesName)
+                kargs["pk__icontains"] = [piece.book.id for piece in pieces]
 
+            if request.GET.get("search"):
+                query  = request.GET.get("search")
+                brand_books = Book.objects.filter(Q(brand__name__icontains=query) | Q(name__icontains=query) )
+                brand_books_ids = [book.id for book in brand_books]
+                pieces = Piece.objects.filter(clothType__name__icontains=query)
+                book_ids = [piece.book.id for piece in pieces]
+                book_ids.extend(brand_books_ids)
+                book_ids = set(book_ids)
+                kargs["pk__in"]=list(book_ids)
+
+        print(kargs)        
         books = Book.objects.filter(**kargs)
-
+        
         self.data["books"] = books
         return render(request, 'wholesale/books.html', self.data)
 

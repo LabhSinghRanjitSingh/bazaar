@@ -34,6 +34,8 @@
 <!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="{% static  'css/util.css' %}">
 	<link rel="stylesheet" type="text/css" href="{% static  'css/main.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static  'css/awesome-bootstrap-checkbox.css' %}">
+	
 <!--===============================================================================================-->
 </head>
 <body class="animsition">
@@ -142,7 +144,8 @@
 			if($(this).data("incart")){
 					 id = $(this).data("id");
 					 removeFromCart(id);
-					 swal(nameProduct, "is removed from cart !", "success");
+					 swal(nameProduct, "is removed from cart !","success", { timer: 1250,});
+					 $(".cartText_"+String(id),this).text("Add to cart");
 					 // $(this).removeClass('js-addedwish-b2');
 					 // $(this).addClass('js-addedwish-b1');
 					 $(this).data("incart",false);
@@ -153,8 +156,8 @@
 						image = $(this).data("image");
 						brand= $(this).data("brand")
 						addToCart(id,name,pieces,image,brand);
-
-						swal(nameProduct, "is added to cart !", "success");
+						$(".cartText_"+String(id),this).text("Remove from cart");
+						swal(nameProduct, "is added to cart !","success", { timer: 1250,});
 						// $(this).addClass('js-addedwish-b2');
 						$(this).data("incart",true);
 			}
@@ -178,7 +181,49 @@
 				ps.update();
 			})
 		});
+		$('.filterCustomHeight').each(function () {
+      		$(this).css('position', 'relative');
+      		$(this).css('overflow-y', 'auto');
+      		var ps = new PerfectScrollbar(this, {
+        		wheelSpeed: 1,
+        		scrollingThreshold: 1000,
+        		wheelPropagation: false,
+        		maxScrollbarLength: 30,
+     		});
 
+     		 $(window).on('resize', function () {
+        		ps.update();
+      		})
+  		});
+
+		$('.customDesktopMenuScroll').each(function () {
+      		$(this).css('overflow-y', 'auto');
+      		var ps = new PerfectScrollbar(this, {
+        		wheelSpeed: 1,
+        		scrollingThreshold: 1000,
+        		wheelPropagation: false,
+        		maxScrollbarLength: 30,
+     		});
+
+     		 $(window).on('resize', function () {
+        		ps.update();
+      		})
+  		});  
+
+		$('.customDesktopMenuScroll-m').each(function () {
+      		$(this).css('overflow-y', 'auto');
+      		var ps = new PerfectScrollbar(this, {
+        		wheelSpeed: 1,
+        		scrollingThreshold: 1000,
+        		wheelPropagation: false,
+        		maxScrollbarLength: 30,
+     		});
+
+     		 $(window).on('resize', function () {
+        		ps.update();
+      		})
+  		});    
+		
 		function slickInit(){
 
 			$('.wrap-slick3').each(function(){
@@ -218,6 +263,17 @@
 			});
 		}
 
+	$("html").on("click",".showbookpopup-from-cart",function(){
+		bookid = $(this).data("bookid");
+		url = "/api/books/"+bookid+"/views";
+		$.get(url,function(data){
+				$("#productpopup").html(data);
+				slickInit();
+				markCartBooks();
+
+
+		})
+	})
 
     $(".showbookpopup").click(function(){
 			bookid = $(this).data("bookid");
@@ -285,15 +341,17 @@
 
 				 var html = "<li class='header-cart-item flex-w flex-t m-b-15' id='cart_tiny_"+id+"' >"
 				 html=html+"<div class='header-cart-item-img cart_item_img' data-bookid='"+id+"'><img src='/"+image+"' alt='IMG'></div> <div class='header-cart-item-txt p-t-8'>"
-				 html=html+"<a href='#' class='header-cart-item-name hov-cl1 trans-04'>"+name+"</a> <span class='header-cart-item-info'>No. of Pieces:"+pieces+"</span></div></li>"
+				 html=html+"<a data-bookid='"+id+"' href='#' class='header-cart-item-name hov-cl1 trans-04 showbookpopup-from-cart js-show-modal-from-cart1'>"+name+"</a> <span class='header-cart-item-info'>No. of Pieces:"+pieces+"</span>"
+				 html=html+"<button class='deleteIcon cart_item_img' data-bookid='"+id+"'><i class='fa fa-trash'></i></button></div></li>"
          return html;
 			 }
 
 			 function getViewCartTable(id,name,brand,pieces,image){
 				 var html ="<tr class='table_row' id='cart_tiny_"+id+"'><td class='column-1'>";
 				 html=html+"<div class='how-itemcart1 cart_item_img' data-bookid='"+id+"'><img src='/"+image+"' alt='IMG'></div></td>";
-				 html=html+"<td class='column-2'>"+name+"</td><td class='column-3'>"+brand+"</td><td class='column-4'>"+pieces+"</td>	<td class='columnn-5'></td></tr>";
-
+				 html=html+"<td class='column-2'> <a data-bookid='"+id+"' href='#' class='hov-cl1 cl2 mtext-102 trans-04 showbookpopup-from-cart js-show-modal-from-checkout'>"+name+"</td>"
+				 html=html+"<td class='column-3'>"+brand+"</td><td class='column-4'>"+pieces+"</td>";
+				 html=html+"<td class='columnn-5'><button class='cart_item_img' data-bookid='"+id+"'><i class='fa fa-trash'></i></button></td></tr>";
 				 return html;
 			 }
 

@@ -17,67 +17,81 @@
   <!-- Search product -->
   <div class="dis-none panel-search w-full p-t-10 p-b-15">
     <div class="bor8 dis-flex p-l-15">
-      <button class="size-113 flex-c-m fs-16 cl2 hov-cl1 trans-04">
+      <button class="size-113 flex-c-m fs-16 cl2 hov-cl1 trans-04" type="submit" form="searchForm" >
         <i class="zmdi zmdi-search"></i>
       </button>
-
-      <input class="mtext-107 cl2 size-114 plh2 p-r-15" type="text" name="search-product" placeholder="Search">
+      <form id="searchForm" action="" method="get">
+      <input class="mtext-107 cl2 size-114 plh2 p-r-15" type="text" name="search" placeholder="Search">
+      </form>
     </div>
   </div>
 
   <!-- Filter -->
   <div class="dis-none panel-filter w-full p-t-10">
-    <div class="wrap-filter flex-w bg6 w-full p-lr-40 p-t-27 p-lr-15-sm">
-      <div class="filter-col1 p-r-15 p-b-27">
-        <div class="mtext-102 cl2 p-b-15">
-          Brands
+    <div class="wrap-filter flex-w bg6 w-full p-lr-15 p-t-27 p-lr-5-sm">
+      
+        <div class="col-sm-3">
+          <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+            <a class="nav-link active mtext-102 cl2 p-b-15" id="v-pills-brand-tab" data-toggle="pill" href="#v-pills-brand" role="tab" aria-controls="v-pills-brand" aria-selected="true">
+              Brands
+              <i class="fa fa-caret-right p-t-4" style="float:right;"></i>
+            </a>
+
+            <a class="nav-link mtext-102 cl2 p-b-15" id="v-pills-clothType-tab" data-toggle="pill" href="#v-pills-clothType" role="tab" aria-controls="v-pills-clothType" aria-selected="true">
+              Cloth Type
+              <i class="fa fa-caret-right p-t-4" style="float:right;"></i>
+            </a>
+
+            <a class="nav-link mtext-102 cl2 p-b-15" id="v-pills-pieces-tab" data-toggle="pill" href="#v-pills-pieces" role="tab" aria-controls="v-pills-pieces" aria-selected="true">
+              Number of Pieces
+              <i class="fa fa-caret-right p-t-4" style="float:right;"></i>
+            </a>
+          </div>
+          <div class="filter-col3 p-b-27 p-t-27">
+            <div class="mtext-102 cl2 p-b-15">
+              <button class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04">
+                Apply Filter
+              </button>
+            </div>
+          </div>
         </div>
 
-        <ul>
-          {% for brand in brands %}
-            <li class="p-b-6">
-            <div class="row">
-                     <div class="col-sm-2">
-                         <input type="checkbox" name="filter_brand">
-                     </div>
-                     <div class="col-sm-*">
-                        <a href="/books/?brands={{brand.name}}" class="filter-link stext-106 trans-04">
-                            {{brand.name}}
-                          </a>
-               </div>
+        <div class="col-sm-9 filterCustomHeight"> 
+          <div class="tab-content" id="v-pills-tabContent">
+            <div class="tab-pane fade show active" id="v-pills-brand" role="tabpanel" aria-labelledby="v-pills-brand-tab">
+              {% for brand in brands %}
+                <div class="form-check abc-checkbox form-check-inline col-sm-2 p-b-5">
+                  <input class="form-check-input" type="checkbox" id="inlineCheckbox_{{brand.pk}}" value="{{brand.name}}" autocomplete="off">
+                  <label class="form-check-label stext-106 trans-04" for="inlineCheckbox__{{brand.pk}}">{{brand.name}}</label>
+                </div>
+              {% endfor %}
+            </div>  
 
-            </li>
-          {% endfor %}
-        </ul>
-      </div>
+            <div class="tab-pane fade" id="v-pills-clothType" role="tabpanel" aria-labelledby="v-pills-clothType-tab">
+              {% for clothtype in clothtypes %}
+                <div class="form-check abc-checkbox form-check-inline col-sm-2 p-b-5">
+                  <input class="form-check-input" type="checkbox" id="inlineCheckbox_{{clothtype.pk}}" value="{{clothtype.name}}" autocomplete="off">
+                  <label class="form-check-label stext-106 trans-04" for="inlineCheckbox__{{clothtype.pk}}">{{clothtype.name}}</label>
+                </div>
+              {% endfor %}
+            </div>
 
-      <div class="filter-col2 p-r-15 p-b-27">
-        <div class="mtext-102 cl2 p-b-15">
-          Cloth Type
+            <div class="tab-pane fade" id="v-pills-pieces" role="tabpanel" aria-labelledby="v-pills-pieces-tab">
+              {% for piecesCount in  piecesCountList %}
+                <div class="form-check abc-radio form-check-inline col-sm-2 p-b-5">
+                  <input class="form-check-input" type="radio" id="inlineRadio_{{piecesCount.0}}" value="{{piecesCount.1}}" autocomplete="off">
+                  <label class="form-check-label stext-106 trans-04" for="inlineRadio__{{piecesCount.0}}">{{piecesCount.1}}</label>
+                </div>
+              {% endfor %}
+            </div>
+          </div> 
         </div>
+    </div>
+  </div>
+</div>
 
-        <ul>
-          {% for clothtype in clothtypes%}
-            <li class="p-b-6">
-              <div class="row">
-                     <div class="col-sm-2">
-                         <input type="checkbox" name="filter_clothtype">
-                     </div>
-                     <div class="col-sm-*">
-                        <a href="/books/?clothtypes={{clothtype.name}}" class="filter-link stext-106 trans-04">
-                            {{clothtype.name}}
-                        </a>
-               </div>
-            </li>
-          {% endfor %}
-        </ul>
-      </div>
 
-      <div class="filter-col3 p-r-15 p-b-27">
-        <div class="mtext-102 cl2 p-b-15">
-          Number of Pieces
-        </div>
-
+<!--
         <ul>
           {% for piecesCount in  piecesCountList %}
             <li class="p-b-6">
@@ -97,25 +111,4 @@
         </ul>
       </div>
 
-      <!-- <div class="filter-col4 p-b-27">
-        <div class="mtext-102 cl2 p-b-15">
-          Tags
-        </div>
-
-        <div class="flex-w p-t-4 m-r--5">
-          <a href="#" class="flex-c-m stext-107 cl6 size-301 bor7 p-lr-15 hov-tag1 trans-04 m-r-5 m-b-5">
-            Fashion
-          </a>
-        </div>
-      </div> -->
-
-      <div class="filter-col3 p-b-27">
-        <div class="mtext-102 cl2 p-b-15">
-          <button class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04">
-            Apply Filter
-          </button>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
+-->
