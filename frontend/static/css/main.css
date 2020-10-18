@@ -4006,3 +4006,6 @@ input.num-product::-webkit-inner-spin-button {
     border-radius: 50% !important;
     margin: 0 5px;
 }
+.t-a-justify{
+    text-align: justify;
+}
