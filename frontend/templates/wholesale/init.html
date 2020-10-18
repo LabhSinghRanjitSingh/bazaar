@@ -1,42 +1,42 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title>LSRS</title>
-	{% load static %}
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-<!--===============================================================================================-->
-	<link rel="icon" type="image/png" href="{% static  'images/icons/favicon.png' %}"/>
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="{% static  'vendor/bootstrap/css/bootstrap.min.css' %}">
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="{% static  'fonts/font-awesome-4.7.0/css/font-awesome.min.css' %}">
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="{% static  'fonts/iconic/css/material-design-iconic-font.min.css' %}">
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="{% static  'fonts/linearicons-v1.0.0/icon-font.min.css' %}">
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="{% static  'vendor/animate/animate.css' %}">
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="{% static  'vendor/css-hamburgers/hamburgers.min.css' %}">
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="{% static  'vendor/animsition/css/animsition.min.css' %}">
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="{% static  'vendor/select2/select2.min.css' %}">
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="{% static  'vendor/daterangepicker/daterangepicker.css' %}">
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="{% static  'vendor/slick/slick.css' %}">
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="{% static  'vendor/MagnificPopup/magnific-popup.css' %}">
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="{% static  'vendor/perfect-scrollbar/perfect-scrollbar.css' %}">
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="{% static  'css/util.css' %}">
-	<link rel="stylesheet" type="text/css" href="{% static  'css/main.css' %}">
-	<link rel="stylesheet" type="text/css" href="{% static  'css/awesome-bootstrap-checkbox.css' %}">
-	
-<!--===============================================================================================-->
+    <title>LSRS</title>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--===============================================================================================-->
+    <link rel="icon" type="image/png" href="{% static  'images/icons/favicon2.ico' %}"/>
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="{% static  'vendor/bootstrap/css/bootstrap.min.css' %}">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="{% static  'fonts/font-awesome-4.7.0/css/font-awesome.min.css' %}">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="{% static  'fonts/iconic/css/material-design-iconic-font.min.css' %}">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="{% static  'fonts/linearicons-v1.0.0/icon-font.min.css' %}">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="{% static  'vendor/animate/animate.css' %}">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="{% static  'vendor/css-hamburgers/hamburgers.min.css' %}">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="{% static  'vendor/animsition/css/animsition.min.css' %}">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="{% static  'vendor/select2/select2.min.css' %}">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="{% static  'vendor/daterangepicker/daterangepicker.css' %}">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="{% static  'vendor/slick/slick.css' %}">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="{% static  'vendor/MagnificPopup/magnific-popup.css' %}">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="{% static  'vendor/perfect-scrollbar/perfect-scrollbar.css' %}">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="{% static  'css/util.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static  'css/main.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static  'css/awesome-bootstrap-checkbox.css' %}">
+
+    <!--===============================================================================================-->
 </head>
 <body class="animsition">
 
@@ -47,394 +47,396 @@
 
 
 <!--=============================================================================================-->
-	<script src="{% static  'vendor/jquery/jquery-3.2.1.min.js' %}"></script>
+<script src="{% static  'vendor/jquery/jquery-3.2.1.min.js' %}"></script>
 <!--===============================================================================================-->
-	<script src="{% static  'vendor/animsition/js/animsition.min.js' %}"></script>
+<script src="{% static  'vendor/animsition/js/animsition.min.js' %}"></script>
 <!--===============================================================================================-->
 {#	<script src="{% static  'vendor/bootstrap/js/popper.js' %}"></script>#}
-	<script src="{% static  'vendor/bootstrap/js/bootstrap.min.js' %}"></script>
+<script src="{% static  'vendor/bootstrap/js/bootstrap.min.js' %}"></script>
 <!--===============================================================================================-->
-  <script src="{% static  'vendor/select2/select2.min.js' %}"></script>
+<script src="{% static  'vendor/select2/select2.min.js' %}"></script>
 
-  <script src="//cdn.jsdelivr.net/npm/pouchdb@7.0.0/dist/pouchdb.min.js"></script>
+<script src="//cdn.jsdelivr.net/npm/pouchdb@7.0.0/dist/pouchdb.min.js"></script>
 
 <!-- TODO -->
 <script>
-		$(".js-select2").each(function(){
-			$(this).select2({
-				minimumResultsForSearch: 20,
-				dropdownParent: $(this).next('.dropDownSelect2')
-			});
-		})
+    $(".js-select2").each(function () {
+        $(this).select2({
+            minimumResultsForSearch: 20,
+            dropdownParent: $(this).next('.dropDownSelect2')
+        });
+    })
 </script>
 
 
 <!--===============================================================================================-->
-	<script src="{% static  'vendor/daterangepicker/moment.min.js' %}"></script>
-	<script src="{% static  'vendor/daterangepicker/daterangepicker.js' %}"></script>
+<script src="{% static  'vendor/daterangepicker/moment.min.js' %}"></script>
+<script src="{% static  'vendor/daterangepicker/daterangepicker.js' %}"></script>
 <!--===============================================================================================-->
-	<script src="{% static  'vendor/slick/slick.min.js' %}"></script>
-	<script src="{% static  'js/slick-custom.js' %}"></script>
+<script src="{% static  'vendor/slick/slick.min.js' %}"></script>
+<script src="{% static  'js/slick-custom.js' %}"></script>
 <!--===============================================================================================-->
-	<script src="{% static  'vendor/parallax100/parallax100.js' %}"></script>
-	<script>
-        $('.parallax100').parallax100();
-	</script>
+<script src="{% static  'vendor/parallax100/parallax100.js' %}"></script>
+<script>
+    $('.parallax100').parallax100();
+</script>
 <!--===============================================================================================-->
-	<script src="{% static  'vendor/MagnificPopup/jquery.magnific-popup.min.js' %}"></script>
-	<script>
-		$('.gallery-lb').each(function() { // the containers for all your galleries
-			$(this).magnificPopup({
-		        delegate: 'a', // the selector for gallery item
-		        type: 'image',
-		        gallery: {
-		        	enabled:true
-		        },
-		        mainClass: 'mfp-fade'
-		    });
-		});
-	</script>
+<script src="{% static  'vendor/MagnificPopup/jquery.magnific-popup.min.js' %}"></script>
+<script>
+    $('.gallery-lb').each(function () { // the containers for all your galleries
+        $(this).magnificPopup({
+            delegate: 'a', // the selector for gallery item
+            type: 'image',
+            gallery: {
+                enabled: true
+            },
+            mainClass: 'mfp-fade'
+        });
+    });
+</script>
 <!--===============================================================================================-->
-	<script src="{% static  'vendor/isotope/isotope.pkgd.min.js' %}"></script>
+<script src="{% static  'vendor/isotope/isotope.pkgd.min.js' %}"></script>
 <!--===============================================================================================-->
-	<script src="{% static  'vendor/sweetalert/sweetalert.min.js' %}"></script>
-	<script>
-		// function haiku(){
-		//
-		//
-		// 	// $('.js-addwish-b2').each(function(){
-		// 	// 	var nameProduct = $(this).parent().parent().find('.js-name-b2').html();
-		// 	// 	$(this).on('click', function(){
-		// 	//
-		// 	//
-		// 	//
-		// 	// 		//$(this).off('click');
-		// 	//
-		// 	// 	});
-		// 	// });
-		//
-		// 	// $('.js-addwish-detail').each(function(){
-		// 	// 	var nameProduct = $(this).parent().parent().parent().find('.js-name-detail').html();
-		// 	//
-		// 	// 	$(this).on('click', function(){
-		// 	// 		swal(nameProduct, "is added to cart !", "success");
-		// 	//
-		// 	// 		$(this).addClass('js-addedwish-detail');
-		// 	// 		$(this).off('click');
-		// 	// 	});
-		// 	// });
-		//
-		// 	/*---------------------------------------------*/
-		//
-		// 	// $('.js-addcart-detail').each(function(){
-		// 	// 	var nameProduct = $(this).parent().parent().parent().parent().find('.js-name-detail').html();
-		// 	// 	$(this).on('click', function(){
-		// 	// 		swal(nameProduct, "is added to cart !", "success");
-		// 	// 	});
-		// 	// });
-		//
-		//
-		// }
-		// haiku();
+<script src="{% static  'vendor/sweetalert/sweetalert.min.js' %}"></script>
+<script>
+    // function haiku(){
+    //
+    //
+    // 	// $('.js-addwish-b2').each(function(){
+    // 	// 	var nameProduct = $(this).parent().parent().find('.js-name-b2').html();
+    // 	// 	$(this).on('click', function(){
+    // 	//
+    // 	//
+    // 	//
+    // 	// 		//$(this).off('click');
+    // 	//
+    // 	// 	});
+    // 	// });
+    //
+    // 	// $('.js-addwish-detail').each(function(){
+    // 	// 	var nameProduct = $(this).parent().parent().parent().find('.js-name-detail').html();
+    // 	//
+    // 	// 	$(this).on('click', function(){
+    // 	// 		swal(nameProduct, "is added to cart !", "success");
+    // 	//
+    // 	// 		$(this).addClass('js-addedwish-detail');
+    // 	// 		$(this).off('click');
+    // 	// 	});
+    // 	// });
+    //
+    // 	/*---------------------------------------------*/
+    //
+    // 	// $('.js-addcart-detail').each(function(){
+    // 	// 	var nameProduct = $(this).parent().parent().parent().parent().find('.js-name-detail').html();
+    // 	// 	$(this).on('click', function(){
+    // 	// 		swal(nameProduct, "is added to cart !", "success");
+    // 	// 	});
+    // 	// });
+    //
+    //
+    // }
+    // haiku();
 
-		$('.add_to_cart').on('click', function(e){
-			e.preventDefault();
-		});
+    $('.add_to_cart').on('click', function (e) {
+        e.preventDefault();
+    });
 
-		$("html").on('click','.add_to_cart',function(){
-			var nameProduct = $(this).data("name");
-			if($(this).data("incart")){
-					 id = $(this).data("id");
-					 removeFromCart(id);
-					 swal(nameProduct, "is removed from cart !","success", { timer: 1250,});
-					 $(".cartText_"+String(id),this).text("Add to cart");
-					 // $(this).removeClass('js-addedwish-b2');
-					 // $(this).addClass('js-addedwish-b1');
-					 $(this).data("incart",false);
-			}else{
-						id = $(this).data("id");
-						name =  $(this).data("name");
-						pieces = $(this).data("pieces");
-						image = $(this).data("image");
-						brand= $(this).data("brand")
-						addToCart(id,name,pieces,image,brand);
-						$(".cartText_"+String(id),this).text("Remove from cart");
-						swal(nameProduct, "is added to cart !","success", { timer: 1250,});
-						// $(this).addClass('js-addedwish-b2');
-						$(this).data("incart",true);
-			}
+    $("html").on('click', '.add_to_cart', function () {
+        var nameProduct = $(this).data("name");
+        if ($(this).data("incart")) {
+            id = $(this).data("id");
+            removeFromCart(id);
+            swal(nameProduct, "is removed from cart !", "success", {timer: 1250,});
+            $(".cartText_" + String(id), this).text("Add to cart");
+            // $(this).removeClass('js-addedwish-b2');
+            // $(this).addClass('js-addedwish-b1');
+            $(this).data("incart", false);
+        } else {
+            id = $(this).data("id");
+            name = $(this).data("name");
+            pieces = $(this).data("pieces");
+            image = $(this).data("image");
+            brand = $(this).data("brand")
+            addToCart(id, name, pieces, image, brand);
+            $(".cartText_" + String(id), this).text("Remove from cart");
+            swal(nameProduct, "is added to cart !", "success", {timer: 1250,});
+            // $(this).addClass('js-addedwish-b2');
+            $(this).data("incart", true);
+        }
 
-		})
-
-	</script>
-<!--===============================================================================================-->
-	<script src="{% static  'vendor/perfect-scrollbar/perfect-scrollbar.min.js' %}"></script>
-	<script>
-		$('.js-pscroll').each(function(){
-			$(this).css('position','relative');
-			$(this).css('overflow','hidden');
-			var ps = new PerfectScrollbar(this, {
-				wheelSpeed: 1,
-				scrollingThreshold: 1000,
-				wheelPropagation: false,
-			});
-
-			$(window).on('resize', function(){
-				ps.update();
-			})
-		});
-		$('.filterCustomHeight').each(function () {
-      		$(this).css('position', 'relative');
-      		$(this).css('overflow-y', 'auto');
-      		var ps = new PerfectScrollbar(this, {
-        		wheelSpeed: 1,
-        		scrollingThreshold: 1000,
-        		wheelPropagation: false,
-        		maxScrollbarLength: 30,
-     		});
-
-     		 $(window).on('resize', function () {
-        		ps.update();
-      		})
-  		});
-
-		$('.customDesktopMenuScroll').each(function () {
-      		$(this).css('overflow-y', 'auto');
-      		var ps = new PerfectScrollbar(this, {
-        		wheelSpeed: 1,
-        		scrollingThreshold: 1000,
-        		wheelPropagation: false,
-        		maxScrollbarLength: 30,
-     		});
-
-     		 $(window).on('resize', function () {
-        		ps.update();
-      		})
-  		});  
-
-		$('.customDesktopMenuScroll-m').each(function () {
-      		$(this).css('overflow-y', 'auto');
-      		var ps = new PerfectScrollbar(this, {
-        		wheelSpeed: 1,
-        		scrollingThreshold: 1000,
-        		wheelPropagation: false,
-        		maxScrollbarLength: 30,
-     		});
-
-     		 $(window).on('resize', function () {
-        		ps.update();
-      		})
-  		});    
-
-		$('.customCheckoutScrollbar').each(function () {
-      		$(this).css('overflow-y', 'auto');
-      		var ps = new PerfectScrollbar(this, {
-        		wheelSpeed: 1,
-        		scrollingThreshold: 1000,
-        		wheelPropagation: false,
-        		maxScrollbarLength: 30,
-     		});
-
-     		 $(window).on('resize', function () {
-        		ps.update();
-      		})
-  		});
-
-		function slickInit(){
-
-			$('.wrap-slick3').each(function(){
-					$(this).find('.slick3').slick({
-							slidesToShow: 1,
-							slidesToScroll: 1,
-							fade: true,
-							infinite: true,
-							autoplay: false,
-							autoplaySpeed: 6000,
-
-							arrows: true,
-							appendArrows: $(this).find('.wrap-slick3-arrows'),
-							prevArrow:'<button class="arrow-slick3 prev-slick3"><i class="fa fa-angle-left" aria-hidden="true"></i></button>',
-							nextArrow:'<button class="arrow-slick3 next-slick3"><i class="fa fa-angle-right" aria-hidden="true"></i></button>',
-
-							dots: true,
-							appendDots: $(this).find('.wrap-slick3-dots'),
-							dotsClass:'slick3-dots',
-							customPaging: function(slick, index) {
-									var portrait = $(slick.$slides[index]).data('thumb');
-									return '<img src=" ' + portrait + ' "/><div class="slick3-dot-overlay"></div>';
-							},
-					});
-			});
-
-
-			$('.gallery-lb').each(function() { // the containers for all your galleries
-				$(this).magnificPopup({
-							delegate: 'a', // the selector for gallery item
-							type: 'image',
-							gallery: {
-								enabled:true
-							},
-							mainClass: 'mfp-fade'
-					});
-			});
-		}
-
-	$("html").on("click",".showbookpopup-from-cart",function(){
-		bookid = $(this).data("bookid");
-		url = "/api/books/"+bookid+"/views";
-		$.get(url,function(data){
-				$("#productpopup").html(data);
-				slickInit();
-				markCartBooks();
-
-
-		})
-	})
-
-    $(".showbookpopup").click(function(){
-			bookid = $(this).data("bookid");
-			url = "/api/books/"+bookid+"/views";
-			$.get(url,function(data){
-				 $("#productpopup").html(data);
-				 slickInit();
-				 markCartBooks();
-
-
-			})
-		})
+    })
 
 </script>
 <!--===============================================================================================-->
-	<script src="{% static  'js/main.js' %}"></script>
+<script src="{% static  'vendor/perfect-scrollbar/perfect-scrollbar.min.js' %}"></script>
+<script>
+    $('.js-pscroll').each(function () {
+        $(this).css('position', 'relative');
+        $(this).css('overflow', 'hidden');
+        var ps = new PerfectScrollbar(this, {
+            wheelSpeed: 1,
+            scrollingThreshold: 1000,
+            wheelPropagation: false,
+        });
+
+        $(window).on('resize', function () {
+            ps.update();
+        })
+    });
+    $('.filterCustomHeight').each(function () {
+        $(this).css('position', 'relative');
+        $(this).css('overflow-y', 'auto');
+        var ps = new PerfectScrollbar(this, {
+            wheelSpeed: 1,
+            scrollingThreshold: 1000,
+            wheelPropagation: false,
+            maxScrollbarLength: 30,
+        });
+
+        $(window).on('resize', function () {
+            ps.update();
+        })
+    });
+
+    $('.customDesktopMenuScroll').each(function () {
+        $(this).css('overflow-y', 'auto');
+        var ps = new PerfectScrollbar(this, {
+            wheelSpeed: 1,
+            scrollingThreshold: 1000,
+            wheelPropagation: false,
+            maxScrollbarLength: 30,
+        });
+
+        $(window).on('resize', function () {
+            ps.update();
+        })
+    });
+
+    $('.customDesktopMenuScroll-m').each(function () {
+        $(this).css('overflow-y', 'auto');
+        var ps = new PerfectScrollbar(this, {
+            wheelSpeed: 1,
+            scrollingThreshold: 1000,
+            wheelPropagation: false,
+            maxScrollbarLength: 30,
+        });
+
+        $(window).on('resize', function () {
+            ps.update();
+        })
+    });
+
+    $('.customCheckoutScrollbar').each(function () {
+        $(this).css('overflow-y', 'auto');
+        var ps = new PerfectScrollbar(this, {
+            wheelSpeed: 1,
+            scrollingThreshold: 1000,
+            wheelPropagation: false,
+            maxScrollbarLength: 30,
+        });
+
+        $(window).on('resize', function () {
+            ps.update();
+        })
+    });
+
+    function slickInit() {
+
+        $('.wrap-slick3').each(function () {
+            $(this).find('.slick3').slick({
+                slidesToShow: 1,
+                slidesToScroll: 1,
+                fade: true,
+                infinite: true,
+                autoplay: false,
+                autoplaySpeed: 6000,
+
+                arrows: true,
+                appendArrows: $(this).find('.wrap-slick3-arrows'),
+                prevArrow: '<button class="arrow-slick3 prev-slick3"><i class="fa fa-angle-left" aria-hidden="true"></i></button>',
+                nextArrow: '<button class="arrow-slick3 next-slick3"><i class="fa fa-angle-right" aria-hidden="true"></i></button>',
+
+                dots: true,
+                appendDots: $(this).find('.wrap-slick3-dots'),
+                dotsClass: 'slick3-dots',
+                customPaging: function (slick, index) {
+                    var portrait = $(slick.$slides[index]).data('thumb');
+                    return '<img src=" ' + portrait + ' "/><div class="slick3-dot-overlay"></div>';
+                },
+            });
+        });
 
 
-<script >
-			var db = new PouchDB('cart');
-			var remoteCouch = false;
-			function addToCart(id,name,pieces,image,brand) {
-						var book = {
-							_id: String(id),
-							name: name,
-							image:image,
-							pieces: pieces,
-							instock: true,
-							bookid :id,
-							brand:brand,
-							type:"book"
-						};
-						db.put(book, function callback(err, result) {
-							if (!err) {
-								console.log('Successfully add to cart !');
-								markCartBooks();
-							}else {
-								alert("add cart->"+err);
-							}
-						});
-			}
+        $('.gallery-lb').each(function () { // the containers for all your galleries
+            $(this).magnificPopup({
+                delegate: 'a', // the selector for gallery item
+                type: 'image',
+                gallery: {
+                    enabled: true
+                },
+                mainClass: 'mfp-fade'
+            });
+        });
+    }
 
-			function removeFromCart(id){
-
-				db.get(String(id), function(err, doc) {
-					 if (err) {
-							return console.log(err);
-					 } else {
-
-						 db.remove(doc._id,doc._rev,function callback(err, result) {
-							 if (!err) {
-								 console.log('Successfully remove from cart !');
-								 markCartBooks();
-							 }else {
-								 alert("remove cart-->"+err);
-							 }
-						 });
-					 }
-				});
-
-			}
+    $("html").on("click", ".showbookpopup-from-cart", function () {
+        bookid = $(this).data("bookid");
+        url = "/api/books/" + bookid + "/views";
+        $.get(url, function (data) {
+            $("#productpopup").html(data);
+            slickInit();
+            markCartBooks();
 
 
-       function gettinyBook(id,name,pieces,image){
+        })
+    })
 
-				 var html = "<li class='header-cart-item flex-w flex-t m-b-15' id='cart_tiny_"+id+"' >"
-				 html=html+"<div class='header-cart-item-img cart_item_img' data-bookid='"+id+"'><img src='/"+image+"' alt='IMG'></div> <div class='header-cart-item-txt p-t-8'>"
-				 html=html+"<a data-bookid='"+id+"' href='#' class='header-cart-item-name hov-cl1 trans-04 showbookpopup-from-cart js-show-modal-from-cart1'>"+name+"</a> <span class='header-cart-item-info'>No. of Pieces:"+pieces+"</span>"
-				 html=html+"<button class='deleteIcon cart_item_img' data-bookid='"+id+"'><i class='fa fa-trash'></i></button></div></li>"
-         return html;
-			 }
+    $(".showbookpopup").click(function () {
+        bookid = $(this).data("bookid");
+        url = "/api/books/" + bookid + "/views";
+        $.get(url, function (data) {
+            $("#productpopup").html(data);
+            slickInit();
+            markCartBooks();
 
-			 function getViewCartTable(id,name,brand,pieces,image){
-				 var html ="<tr class='table_row' id='cart_tiny_"+id+"'><td class='column-1'>";
-				 html=html+"<div class='how-itemcart1 cart_item_img' data-bookid='"+id+"'><img src='/"+image+"' alt='IMG'></div></td>";
-				 html=html+"<td class='column-2'> <a data-bookid='"+id+"' href='#' class='hov-cl1 cl2 mtext-102 trans-04 showbookpopup-from-cart js-show-modal-from-checkout'>"+name+"</td>"
-				 html=html+"<td class='column-3'>"+brand+"</td><td class='column-4'>"+pieces+"</td>";
-				 html=html+"<td class='columnn-5'><button class='cart_item_img' data-bookid='"+id+"'><i class='fa fa-trash'></i></button></td></tr>";
-				 return html;
-			 }
 
-			 $('.js-view-shoppingcart').ready(function(){
+        })
+    })
 
-				 db.allDocs({
-								include_docs: true,
-							 attachments: true
-				 }).then(function (result) {
-						 $("#cart_table_data").html("");
-						 result.rows.forEach(function(data){
+</script>
+<!--===============================================================================================-->
+<script src="{% static  'js/main.js' %}"></script>
 
-							$("#cart_table_data").append(getViewCartTable(data.doc._id,data.doc.name,data.doc.brand,data.doc.pieces,data.doc.image));
-						 });
 
-				 }).catch(function (err) {
-								 console.log(err);
-				 });
-		 });
+<script>
+    var db = new PouchDB('cart');
+    var remoteCouch = false;
 
-			$('.js-show-cart').on('click',function(){
+    function addToCart(id, name, pieces, image, brand) {
+        var book = {
+            _id: String(id),
+            name: name,
+            image: image,
+            pieces: pieces,
+            instock: true,
+            bookid: id,
+            brand: brand,
+            type: "book"
+        };
+        db.put(book, function callback(err, result) {
+            if (!err) {
+                console.log('Successfully add to cart !');
+                markCartBooks();
+            } else {
+                alert("add cart->" + err);
+            }
+        });
+    }
 
-					db.allDocs({
-					       include_docs: true,
-				        attachments: true
-					}).then(function (result) {
-              $("#cartdata").html("");
-							result.rows.forEach(function(data){
+    function removeFromCart(id) {
 
-								$("#cartdata").append(gettinyBook(data.doc._id,data.doc.name,data.doc.pieces,data.doc.image));
-							});
+        db.get(String(id), function (err, doc) {
+            if (err) {
+                return console.log(err);
+            } else {
 
-					}).catch(function (err) {
-				         	console.log(err);
-					});
-	    });
+                db.remove(doc._id, doc._rev, function callback(err, result) {
+                    if (!err) {
+                        console.log('Successfully remove from cart !');
+                        markCartBooks();
+                    } else {
+                        alert("remove cart-->" + err);
+                    }
+                });
+            }
+        });
 
-			function markCartBooks(){
+    }
+
+
+    function gettinyBook(id, name, pieces, image) {
+
+        var html = "<li class='header-cart-item flex-w flex-t m-b-15' id='cart_tiny_" + id + "' >"
+        html = html + "<div class='header-cart-item-img cart_item_img' data-bookid='" + id + "'><img src='/" + image + "' alt='IMG'></div> <div class='header-cart-item-txt p-t-8'>"
+        html = html + "<a data-bookid='" + id + "' href='#' class='header-cart-item-name hov-cl1 trans-04 showbookpopup-from-cart js-show-modal-from-cart1'>" + name + "</a> <span class='header-cart-item-info'>No. of Pieces:" + pieces + "</span>"
+        html = html + "<button class='deleteIcon cart_item_img' data-bookid='" + id + "'><i class='fa fa-trash'></i></button></div></li>"
+        return html;
+    }
+
+    function getViewCartTable(id, name, brand, pieces, image) {
+        var html = "<tr class='table_row' id='cart_tiny_" + id + "'><td class='column-1'>";
+        html = html + "<div class='how-itemcart1 cart_item_img' data-bookid='" + id + "'><img src='/" + image + "' alt='IMG'></div></td>";
+        html = html + "<td class='column-2'> <a data-bookid='" + id + "' href='#' class='hov-cl1 cl2 mtext-102 trans-04 showbookpopup-from-cart js-show-modal-from-checkout'>" + name + "</td>"
+        html = html + "<td class='column-3'>" + brand + "</td><td class='column-4'>" + pieces + "</td>";
+        html = html + "<td class='columnn-5'><button class='cart_item_img' data-bookid='" + id + "'><i class='fa fa-trash'></i></button></td></tr>";
+        return html;
+    }
+
+    $('.js-view-shoppingcart').ready(function () {
+
+        db.allDocs({
+            include_docs: true,
+            attachments: true
+        }).then(function (result) {
+            $("#cart_table_data").html("");
+            result.rows.forEach(function (data) {
+
+                $("#cart_table_data").append(getViewCartTable(data.doc._id, data.doc.name, data.doc.brand, data.doc.pieces, data.doc.image));
+            });
+
+        }).catch(function (err) {
+            console.log(err);
+        });
+    });
+
+    $('.js-show-cart').on('click', function () {
+
+        db.allDocs({
+            include_docs: true,
+            attachments: true
+        }).then(function (result) {
+            $("#cartdata").html("");
+            result.rows.forEach(function (data) {
+
+                $("#cartdata").append(gettinyBook(data.doc._id, data.doc.name, data.doc.pieces, data.doc.image));
+            });
+
+        }).catch(function (err) {
+            console.log(err);
+        });
+    });
+
+    function markCartBooks() {
         $(".cart_item").removeClass("js-addedwish-b2");
-				$(".cart_item").data("incart",false);
+        $(".cart_item").data("incart", false);
 
-				db.allDocs({
-							 include_docs: true,
-							attachments: true
-				}).then(function (result) {
+        db.allDocs({
+            include_docs: true,
+            attachments: true
+        }).then(function (result) {
 
-						var i =0;
-						result.rows.forEach(function(data){
-							$(".cart_"+String(data.doc._id)).addClass("js-addedwish-b2");
-							$(".cart_"+String(data.doc._id)).data("incart",true);
-							i=i+1;
-						});
+            var i = 0;
+            result.rows.forEach(function (data) {
+                $(".cart_" + String(data.doc._id)).addClass("js-addedwish-b2");
+                $(".cart_" + String(data.doc._id)).data("incart", true);
+                i = i + 1;
+            });
 
-						$("#cart_count").attr("data-notify",i);
-						$("#cart_count_m").attr("data-notify",i);
-				}).catch(function (err) {
-								console.log(err);
-				});
-			}
+            $("#cart_count").attr("data-notify", i);
+            $("#cart_count_m").attr("data-notify", i);
+        }).catch(function (err) {
+            console.log(err);
+        });
+    }
 
-			$("html").on( "click",".cart_item_img",function() {
-            removeFromCart($(this).data("bookid"));
-						$('#cart_tiny_'+String($(this).data("bookid"))).remove();
-				
-      });
+    $("html").on("click", ".cart_item_img", function () {
+        removeFromCart($(this).data("bookid"));
+        $('#cart_tiny_' + String($(this).data("bookid"))).remove();
 
-markCartBooks();
+    });
+
+
+    markCartBooks();
 </script>
 
 </body>
