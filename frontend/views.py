@@ -100,7 +100,7 @@ class PageView:
         page_size = 20
         self.data['last_page'] = False
         if page > int(math.ceil(books_count / (1.0 * page_size))):
-            page = int(math.ceil(books_count / (1.0 * page_size)))
+            page = max(1,int(math.ceil(books_count / (1.0 * page_size))))
 
         if page >= int(math.ceil(books_count / (1.0 * page_size))):
             self.data['last_page'] = True
