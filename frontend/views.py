@@ -10,6 +10,8 @@ from frontend.serializers import UserSerializer, GroupSerializer, BookSerializer
 from frontend.models import Slider, Scroller
 from django.db.models import Count
 from django.db.models import Q
+from django.db.models import IntegerField
+from django.db.models.functions import Cast
 
 
 class PageView:
@@ -73,7 +75,7 @@ class PageView:
                 if int(noOfPieces) in range(1, 5):
                     a = ((int(noOfPieces) - 1) * 5) + 1
                     b = a + 5
-                    _books = Book.objects.annotate(num_pieces=Count('pieces')).filter(num_pieces__gte=a,
+                    _books = Book.objects.annotate(num_pieces=Cast('pieceCount',IntegerField())).filter(num_pieces__gte=a,
                                                                                       num_pieces__lt=b)
                     _books_ids = [book.id for book in _books]
                     kargs["pk__in"] = list(_books_ids)
