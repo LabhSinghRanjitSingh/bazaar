@@ -14,6 +14,7 @@ class Book(models.Model):
     cover = models.ImageField(upload_to=Image_Folder)
     description = models.CharField(blank=True, max_length=500)
     tags = models.ManyToManyField('Tag')
+    pieceCount = models.CharField(blank=True, max_length=100)
 
     class Meta:
         verbose_name = 'Book'
@@ -27,7 +28,7 @@ class Book(models.Model):
         pass
 
     def __str__(self):
-        return self.name
+        return "%s:%s" % (self.name,self.pieceCount)
 
 
 class Brand(models.Model):
