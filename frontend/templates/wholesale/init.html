@@ -226,19 +226,6 @@
         })
     });
 
-    $('.customCheckoutScrollbar').each(function () {
-        $(this).css('overflow-y', 'auto');
-        var ps = new PerfectScrollbar(this, {
-            wheelSpeed: 1,
-            scrollingThreshold: 1000,
-            wheelPropagation: false,
-            maxScrollbarLength: 30,
-        });
-
-        $(window).on('resize', function () {
-            ps.update();
-        })
-    });
 
     function slickInit() {
 
